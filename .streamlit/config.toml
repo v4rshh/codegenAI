@@ -1,0 +1,7 @@
+[theme]
+# Set the primary colors to closely match the dark theme
+base="dark"
+backgroundColor="#1E1E1E" # Dark Gray
+secondaryBackgroundColor="#000000" # Black Sidebar and secondary elements
+textColor="#FFFFFF"
+primaryColor="#10A37F" # ChatGPT Green
