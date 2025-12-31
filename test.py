@@ -401,8 +401,7 @@ st.markdown(DARK_CSS if st.session_state.theme == "dark" else LIGHT_CSS, unsafe_
 # --- 4. Title & Subtitle ---
 st.title("CODEGEN AI")
 st.markdown(
-    '<div class="codeGEN AI-subtitle">CODEGEN AI.</div>'
-,
+   '<div class="codegen AI-subtitle">Your AI-powered coding assistant. Upload files, speak your queries, and get code suggestions!</div>',
     unsafe_allow_html=True
 )
 
@@ -791,26 +790,28 @@ if prompt := st.chat_input("Message..."):
         file_context = extract_text_from_files(uploaded_files)
 
     # ✅ Generate assistant response ONLY here
-    assistant_response = generate_ollama_response(
+    with st.spinner("Thinking..."):
+        assistant_response = generate_ollama_response(
         current_chat_id,
         model="phi3",
         extra_context=file_context
     )
 
     with st.chat_message("assistant", avatar="🤖"):
-        message_placeholder = st.empty()
-        full_response = ""
+        # message_placeholder = st.empty()
+        # full_response = ""
+        st.markdown(assistant_response)
 
-        for chunk in assistant_response.split():
-            full_response += chunk + " "
-            time.sleep(0.03)
-            message_placeholder.markdown(full_response + "▌")
+        # for chunk in assistant_response.split():
+        #     full_response += chunk + " "
+        #     time.sleep(0.03)
+        #     message_placeholder.markdown(full_response + "▌")
 
-        message_placeholder.markdown(full_response)
+        # message_placeholder.markdown(full_response)
 
     # Save assistant message
     st.session_state.chats[current_chat_id].append(
-        {"role": "assistant", "content": full_response}
+        {"role": "assistant", "content": assistant_response}
     )
 
     # Update chat title safely
