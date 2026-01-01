@@ -3,7 +3,7 @@ import tempfile
 import soundfile as sf
 import os
 
-# Load model once (important)
+# Load model once at module level
 model = whisper.load_model("base")
 
 def transcribe_audio(audio_frames, sample_rate=48000):

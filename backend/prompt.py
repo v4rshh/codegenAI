@@ -19,9 +19,6 @@ def build_prompt(chat_history):
     prompt += "ASSISTANT:"
     return prompt
 
-
-
-# """
 def build_image_debug_prompt(ocr_text):
     return f"""
 You are an expert software engineer.You are highly talented at debugging code snippets that have been extracted from images using OCR
